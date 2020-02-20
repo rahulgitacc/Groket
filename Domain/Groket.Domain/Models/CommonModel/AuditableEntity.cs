@@ -1,4 +1,5 @@
 using System;
+using Groket.Domain;
 
 namespace Groket.Domain.Models.CommonModel
 {
@@ -7,6 +8,11 @@ namespace Groket.Domain.Models.CommonModel
     /// </summary>
     public class AuditableEntity
     {
+        public AuditableEntity()
+        {
+            RowStatus = (int)Enums.RowStatus.Active;
+        }
+
         /// <summary>
         /// Get or Set entity id
         /// </summary>
@@ -25,7 +31,7 @@ namespace Groket.Domain.Models.CommonModel
         /// <summary>
         /// Get or Set entity last modified user
         /// </summary>
-        public Guid LastModifiedBy { get; set; }
+        public Guid? LastModifiedBy { get; set; }
 
         /// <summary>
         /// Get or Set entity last modified date

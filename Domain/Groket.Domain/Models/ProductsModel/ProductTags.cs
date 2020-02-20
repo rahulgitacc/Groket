@@ -10,7 +10,8 @@ namespace Groket.Domain.Models.ProductsModel
     {
         public ProductTags()
         {
-            Products = new List<Product>();
+            ProductWithTags = new HashSet<ProductWithTag>();
+            IsPublished = true;
         }
         /// <summary>
         /// Get or Set tag name
@@ -23,8 +24,8 @@ namespace Groket.Domain.Models.ProductsModel
         public bool IsPublished { get; set; }
 
         /// <summary>
-        /// Get or Set the list of products 
+        /// Get or Set associated product and tag relationship
         /// </summary>
-        public IList<Product> Products { get; set; }
+        public ICollection<ProductWithTag> ProductWithTags { get; set; }
     }
 }

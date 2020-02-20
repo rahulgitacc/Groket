@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Groket.Domain.Models.CommonModel;
+using Groket.Domain.Models.ProductsModel;
 
 namespace Groket.Domain.Models.CatalogModel
 {
@@ -7,6 +10,14 @@ namespace Groket.Domain.Models.CatalogModel
     /// </summary>
     public class Category : AuditableEntity
     {
+        
+        public Category()
+        {
+            Products = new List<Product>();
+            IsPublished = true;
+            IncludeInMenu = true;
+        }
+
         /// <summary>
         /// Get or Set category name
         /// </summary>
@@ -36,20 +47,25 @@ namespace Groket.Domain.Models.CatalogModel
         /// Get or Set category is included into menu
         /// </summary>
         public bool IncludeInMenu { get; set; }
-
-        /// <summary>
-        /// Get or Set category media id reference
-        /// </summary>
-        public string MediaId { get; set; }
         
         /// <summary>
         /// Get or Set category thumbnail image
         /// </summary>
-        public Media ThumbnailImage { get; set; }
+        public Media Media { get; set; }
+        
+        /// <summary>
+        /// Get or Set reference of the catalog
+        /// </summary>
+        public Guid FkCatalogId { get; set; }
 
         /// <summary>
-        /// Get or Set reference of the Catalog
+        /// Get or Set catalog entity to define the relationship
         /// </summary>
         public Catalog Catalog { get; set; }
+
+        /// <summary>
+        /// Get or Set related products
+        /// </summary>
+        public IList<Product> Products { get; set; }
     }
 }

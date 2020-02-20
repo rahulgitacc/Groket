@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{CAB675ED
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Admin", "Admin", "{BFC25E03-7846-4D43-BB33-85C6E07D20CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groket.Admin", "WebUI\Admin\Groket.Admin\Groket.Admin.csproj", "{55A58D31-7AB7-4CC9-BD1A-2EA7133E15F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Groket.Admin", "WebUI\Admin\Groket.Admin\Groket.Admin.csproj", "{55A58D31-7AB7-4CC9-BD1A-2EA7133E15F8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{960C6EB8-02A6-4E02-9894-63E08428A528}"
 EndProject
@@ -23,7 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{65B05F3F-F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IoC", "IoC", "{892D09B9-9724-451A-B482-929077DC12F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Groket.Data", "Groket.Data\Groket.Data.csproj", "{BCC0B050-2539-4AA4-AD97-0538B3637AEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Groket.Data", "Groket.Data\Groket.Data.csproj", "{BCC0B050-2539-4AA4-AD97-0538B3637AEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IdentityServer", "IdentityServer", "{DFF372E8-799C-40C0-8973-7898CA96B997}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

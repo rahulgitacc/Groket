@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Groket.Domain.Models.CatalogModel;
 using Groket.Domain.Models.CommonModel;
 
@@ -8,6 +10,13 @@ namespace Groket.Domain.Models.ProductsModel
     /// </summary>
     public class Product : AuditableEntity
     {
+        public Product()
+        {
+            ProductWithTags = new HashSet<ProductWithTag>();
+            Media = new HashSet<Media>();
+            PriceHistory = new HashSet<ProductPriceHistory>();
+            IsAllowToOrder = true;
+        }
         /// <summary>
         /// Get or Set product Name
         /// </summary>
@@ -49,24 +58,34 @@ namespace Groket.Domain.Models.ProductsModel
         public bool IsCallForPricing { get; set; }
 
         /// <summary>
-        /// Get or Set
+        /// Get or Set Is Allow to order
         /// </summary>
         public bool IsAllowToOrder { get; set; }
 
         /// <summary>
         /// Get or Set the stock of the product
         /// </summary>
-        public int StockQuantity { get; set; }
+        public int? StockQuantity { get; set; }
 
         /// <summary>
-        /// Product image
+        /// Get or set Product media reference  
         /// </summary>
-        public Media ThumbnailImage { get; set; }
+        public ICollection<Media> Media { get; set; }
 
         /// <summary>
-        /// Get or Set reference of the brand
+        /// Get or Set reference of the Brand
+        /// </summary>
+        public Guid FkBrandId { get; set; }
+
+        /// <summary>
+        /// Get or Set brand entity to define the relationship
         /// </summary>
         public Brand Brand { get; set; }
+        
+        /// <summary>
+        /// Get or Set reference of the Category
+        /// </summary>
+        public Guid FkCategoryId { get; set; }
 
         /// <summary>
         /// Get or Set reference of the product category
@@ -76,6 +95,11 @@ namespace Groket.Domain.Models.ProductsModel
         /// <summary>
         /// Get or Set reference of the product price history
         /// </summary>
-        public ProductPriceHistory PriceHistory { get; set; }
+        public ICollection<ProductPriceHistory> PriceHistory { get; set; }
+        
+        /// <summary>
+        /// Get or Set associated product and tag relationship
+        /// </summary>
+        public ICollection<ProductWithTag> ProductWithTags { get; set; }
     }
 }
