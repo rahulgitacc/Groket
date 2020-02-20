@@ -11,13 +11,13 @@ namespace Groket.Data.Mapping.CatalogMapping
     {
         public void Configure(EntityTypeBuilder<Brand> builder)
         {
-            builder.HasKey(b => b.Id);
+            builder.HasKey(b => b.Id).HasName("BrandId");
 
             builder.Property(b => b.CreatedBy)
                 .IsRequired();
 
-            builder.Property(b => b.Created)
-                .ValueGeneratedOnAdd()
+            builder.Property(b => b.Created)                
+                .HasDefaultValueSql("GetDate()")
                 .IsRequired();
 
             builder.Property(b => b.Name)
@@ -29,6 +29,10 @@ namespace Groket.Data.Mapping.CatalogMapping
                 .IsRequired();
 
             builder.Property(b => b.Description)
+                .IsRequired();
+
+            builder.Property(b => b.IsPublished)
+                .HasDefaultValue(true)
                 .IsRequired();
 
             builder.HasOne(b => b.Media)

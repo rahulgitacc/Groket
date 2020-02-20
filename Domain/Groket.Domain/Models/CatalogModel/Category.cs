@@ -14,8 +14,6 @@ namespace Groket.Domain.Models.CatalogModel
         public Category()
         {
             Products = new List<Product>();
-            IsPublished = true;
-            IncludeInMenu = true;
         }
 
         /// <summary>

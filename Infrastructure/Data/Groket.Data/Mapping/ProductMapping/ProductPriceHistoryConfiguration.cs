@@ -15,7 +15,11 @@ namespace Groket.Data.Mapping.ProductMapping
             builder.HasKey(pph => pph.Id);
 
             builder.Property(pph => pph.Price)
+                .HasColumnType("decimal(18,2)")
                 .IsRequired();
+
+            builder.Property(pph => pph.OldPrice)
+                .HasColumnType("decimal(18,2)");
 
             builder.HasOne(pph => pph.Product)
                 .WithMany(pph => pph.PriceHistory)

@@ -1,5 +1,4 @@
 using Groket.Domain.Models.CommonModel;
-using System;
 using System.Collections.Generic;
 
 namespace Groket.Domain.Models.CatalogModel
@@ -12,8 +11,6 @@ namespace Groket.Domain.Models.CatalogModel
         public Catalog()
         {
             Categories = new HashSet<Category>();
-            IsPublished = true;
-            IncludeInMenu = true;
         }
 
         /// <summary>

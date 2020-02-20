@@ -26,7 +26,13 @@ namespace Groket.Data.Mapping.CatalogMapping
                 .IsRequired();
 
             builder.Property(c => c.DisplayOrder)
-                  .ValueGeneratedOnAdd();
+                  .HasDefaultValue(0);
+
+            builder.Property(c => c.IsPublished)
+                .HasDefaultValue(true);
+
+            builder.Property(c => c.IncludeInMenu)
+                .HasDefaultValue(true);
 
             builder.HasOne(c => c.Media)
                 .WithOne(c => c.Category);

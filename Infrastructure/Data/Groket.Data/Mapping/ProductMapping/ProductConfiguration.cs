@@ -25,7 +25,14 @@ namespace Groket.Data.Mapping.ProductMapping
                 .IsRequired();
 
             builder.Property(p => p.Price)
+                .HasColumnType("decimal(18,2)")
                 .IsRequired();
+
+            builder.Property(p => p.SpecialPrice)
+                .HasColumnType("decimal(18,2)");
+
+            builder.Property(p => p.IsAllowToOrder)
+                .HasDefaultValue(true);
 
             builder.HasMany(p => p.Media)
                 .WithOne(p => p.Product);

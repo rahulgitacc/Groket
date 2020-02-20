@@ -15,7 +15,6 @@ namespace Groket.Domain.Models.ProductsModel
             ProductWithTags = new HashSet<ProductWithTag>();
             Media = new HashSet<Media>();
             PriceHistory = new HashSet<ProductPriceHistory>();
-            IsAllowToOrder = true;
         }
         /// <summary>
         /// Get or Set product Name

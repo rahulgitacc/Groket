@@ -12,7 +12,6 @@ namespace Groket.Domain.Models.CatalogModel
         public Brand()
         {
             Products = new HashSet<Product>();
-            IsPublished = true;
         }
 
         /// <summary>
