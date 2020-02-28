@@ -31,9 +31,6 @@ namespace Groket.Data
             modelBuilder.ApplyConfiguration(new ProductPriceHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductTagsConfiguration());
             modelBuilder.ApplyConfiguration(new ProductWithTagConfiguration());
-
-            // Ignore model to eliminate from table creation operation
-            //modelBuilder.Ignore<AuditableEntity>();
         }
 
         #region DbSet Properties
@@ -44,7 +41,7 @@ namespace Groket.Data
         public DbSet<Media> Medias { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductPriceHistory> ProductPriceHistories { get; set; }
-        public DbSet<ProductWithTag> ProductPriceTags { get; set; }
+        public DbSet<ProductWithTag> ProductWithTags { get; set; }
         public DbSet<ProductTags> ProductTags { get; set; }
 
         #endregion
