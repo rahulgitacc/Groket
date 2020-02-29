@@ -54,24 +54,14 @@ namespace Groket.Domain.Models.CatalogModel
         public bool IncludeInMenu  { get; set; }
 
         /// <summary>
-        /// Get or Set catalog media id reference
-        /// </summary>
-        public string MediaId { get; set; }
-
-        /// <summary>
         /// Get or Set children category Id
         /// </summary>
-        public IEnumerable<Category> Category { get; set; }
+        public ICollection<Category> Categories { get; set; }
 
         /// <summary>
         /// Get or Set catalog thumbnail image
         /// </summary>
-        public Media ThumbnailImage { get; set; }
-
-        /// <summary>
-        /// Get or set list of category
-        /// </summary>
-        public ICollection<Category> Categories { get; set; }
+        public Media Media { get; set; }
 
     }
 }

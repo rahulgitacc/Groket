@@ -35,14 +35,9 @@ namespace Groket.Domain.Models.CatalogModel
         public bool IsPublished { get; set; }
 
         /// <summary>
-        /// Get or Set brand media id reference
-        /// </summary>
-        public string MediaId { get; set; }
-
-        /// <summary>
         /// Get or Set band image
         /// </summary>
-        public Media ThumbnailImage { get; set; }
+        public Media Media { get; set; }
         
         /// <summary>
         /// Get or set list of products
