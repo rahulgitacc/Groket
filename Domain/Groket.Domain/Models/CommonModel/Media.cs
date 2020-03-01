@@ -26,6 +26,11 @@ namespace Groket.Domain.Models.CommonModel
         public string FileName { get; set; }
 
         /// <summary>
+        /// Get or Set the file URL
+        /// </summary>
+        public string FileUrl { get; set; }
+
+        /// <summary>
         /// Get or Set the type of the file
         /// </summary>
         public MediaType MediaType { get; set; }

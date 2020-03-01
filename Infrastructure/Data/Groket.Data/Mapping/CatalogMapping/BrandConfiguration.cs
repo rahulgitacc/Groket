@@ -16,7 +16,7 @@ namespace Groket.Data.Mapping.CatalogMapping
             builder.Property(b => b.CreatedBy)
                 .IsRequired();
 
-            builder.Property(b => b.Created)                
+            builder.Property(b => b.Created)
                 .HasDefaultValueSql("GetDate()")
                 .IsRequired();
 
