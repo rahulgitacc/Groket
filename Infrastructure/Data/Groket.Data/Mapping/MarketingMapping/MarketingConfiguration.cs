@@ -1,14 +1,26 @@
-﻿using Groket.Domain.Models.Marketing;
+﻿using Groket.Domain.Enums;
+using Groket.Domain.Models.Marketing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Groket.Data.Mapping.MarketingMapping
 {
+    /// <summary>
+    /// Set the configuration of the Marketing entity
+    /// </summary>
     public class MarketingConfiguration : IEntityTypeConfiguration<Marketing>
     {
         public void Configure(EntityTypeBuilder<Marketing> builder)
         {
             builder.HasKey(m => m.Id);
+
+            builder.Property(m => m.RowStatus)
+                .IsRequired()
+                .HasDefaultValue((int)RowStatus.Active);
+
+            builder.Property(m => m.Created)
+                .IsRequired()
+                .HasDefaultValueSql("GetDate()");
 
             builder.Property(m => m.CampaignName)
                 .IsRequired()
@@ -24,6 +36,9 @@ namespace Groket.Data.Mapping.MarketingMapping
                 .IsRequired()
                 .HasDefaultValueSql("GetDate()");
 
+            builder.Property(m => m.CampaignStatus)
+                .IsRequired()
+                .HasDefaultValue((int)CampaignStatus.Planed);
         }
     }
 }

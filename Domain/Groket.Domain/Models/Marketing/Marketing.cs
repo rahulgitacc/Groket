@@ -41,6 +41,11 @@ namespace Groket.Domain.Models.Marketing
         public MarketingMode MarketingMode { get; set; }
 
         /// <summary>
+        /// Get or set the campaigning status
+        /// </summary>
+        public CampaignStatus CampaignStatus { get; set; }
+
+        /// <summary>
         /// Get or set the foreign key for the Expenditure table
         /// </summary>
         public Guid FkExpenditureId { get; set; }
@@ -49,5 +54,6 @@ namespace Groket.Domain.Models.Marketing
         /// Get or set the relationship with the Expenditure
         /// </summary>
         public Expenditure Expenditure { get; set; }
+
     }
 }

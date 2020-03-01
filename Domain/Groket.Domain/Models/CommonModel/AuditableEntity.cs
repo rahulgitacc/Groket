@@ -8,11 +8,6 @@ namespace Groket.Domain.Models.CommonModel
     /// </summary>
     public class AuditableEntity
     {
-        public AuditableEntity()
-        {
-            RowStatus = (int)Enums.RowStatus.Active;
-        }
-
         /// <summary>
         /// Get or Set entity id
         /// </summary>

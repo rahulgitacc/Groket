@@ -27,5 +27,15 @@ namespace Groket.Domain.Models.Marketing
         /// Get or Set the cost
         /// </summary>
         public decimal Cost { get; set; }
+
+        /// <summary>
+        /// Get or set the relationship with the marketing
+        /// </summary>
+        public Marketing Marketing { get; set; }
+
+        /// <summary>
+        /// Get or set the relationship with the fund transaction
+        /// </summary>
+        public FundTransaction FundTransaction { get; set; }
     }
 }

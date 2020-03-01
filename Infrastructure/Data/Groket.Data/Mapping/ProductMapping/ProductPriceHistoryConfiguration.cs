@@ -1,4 +1,5 @@
 ﻿
+using Groket.Domain.Enums;
 using Groket.Domain.Models.ProductsModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,6 +14,14 @@ namespace Groket.Data.Mapping.ProductMapping
         public void Configure(EntityTypeBuilder<ProductPriceHistory> builder)
         {
             builder.HasKey(pph => pph.Id);
+
+            builder.Property(pph => pph.RowStatus)
+                .IsRequired()
+                .HasDefaultValue((int)RowStatus.Active);
+
+            builder.Property(pph => pph.Created)
+                .IsRequired()
+                .HasDefaultValueSql("GetDate()");
 
             builder.Property(pph => pph.Price)
                 .HasColumnType("decimal(18,2)")

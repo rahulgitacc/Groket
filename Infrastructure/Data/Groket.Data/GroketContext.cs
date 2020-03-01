@@ -1,8 +1,10 @@
 ﻿using Groket.Data.Mapping.CatalogMapping;
 using Groket.Data.Mapping.CommonMapping;
+using Groket.Data.Mapping.MarketingMapping;
 using Groket.Data.Mapping.ProductMapping;
 using Groket.Domain.Models.CatalogModel;
 using Groket.Domain.Models.CommonModel;
+using Groket.Domain.Models.Marketing;
 using Groket.Domain.Models.ProductsModel;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +33,9 @@ namespace Groket.Data
             modelBuilder.ApplyConfiguration(new ProductPriceHistoryConfiguration());
             modelBuilder.ApplyConfiguration(new ProductTagsConfiguration());
             modelBuilder.ApplyConfiguration(new ProductWithTagConfiguration());
+            modelBuilder.ApplyConfiguration(new ExpenditureConfiguration());
+            modelBuilder.ApplyConfiguration(new FundTransactionConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductWithTagConfiguration());
         }
 
         #region DbSet Properties
@@ -43,6 +48,9 @@ namespace Groket.Data
         public DbSet<ProductPriceHistory> ProductPriceHistories { get; set; }
         public DbSet<ProductWithTag> ProductWithTags { get; set; }
         public DbSet<ProductTags> ProductTags { get; set; }
+        public DbSet<Expenditure> Expenditures { get; set; }
+        public DbSet<FundTransaction> FundTransactions { get; set; }
+        public DbSet<Marketing> Marketings { get; set; }
 
         #endregion
 
