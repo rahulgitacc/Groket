@@ -1,4 +1,5 @@
 ﻿
+using Groket.Domain.Enums;
 using Groket.Domain.Models.CommonModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -13,6 +14,14 @@ namespace Groket.Data.Mapping.CommonMapping
         public void Configure(EntityTypeBuilder<Media> builder)
         {
             builder.HasKey(m => m.Id);
+
+            builder.Property(m => m.RowStatus)
+                .IsRequired()
+                .HasDefaultValue((int)RowStatus.Active);
+
+            builder.Property(m => m.Created)
+                .IsRequired()
+                .HasDefaultValueSql("GetDate()");
 
             builder.Property(m => m.Caption)
                 .IsRequired()

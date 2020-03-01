@@ -1,4 +1,5 @@
-﻿using Groket.Domain.Models.ProductsModel;
+﻿using Groket.Domain.Enums;
+using Groket.Domain.Models.ProductsModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,6 +13,14 @@ namespace Groket.Data.Mapping.ProductMapping
         public void Configure(EntityTypeBuilder<Product> builder)
         {
             builder.HasKey(p => p.Id);
+
+            builder.Property(p => p.RowStatus)
+                .IsRequired()
+                .HasDefaultValue((int)RowStatus.Active);
+
+            builder.Property(p => p.Created)
+                .IsRequired()
+                .HasDefaultValueSql("GetDate()");
 
             builder.Property(p => p.Name)
                 .HasMaxLength(100)

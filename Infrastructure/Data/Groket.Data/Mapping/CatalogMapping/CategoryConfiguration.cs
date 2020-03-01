@@ -1,4 +1,5 @@
-﻿using Groket.Domain.Models.CatalogModel;
+﻿using Groket.Domain.Enums;
+using Groket.Domain.Models.CatalogModel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,6 +13,14 @@ namespace Groket.Data.Mapping.CatalogMapping
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.HasKey(c => c.Id);
+
+            builder.Property(c => c.RowStatus)
+                .IsRequired()
+                .HasDefaultValue((int)RowStatus.Active);
+
+            builder.Property(c => c.Created)
+                .IsRequired()
+                .HasDefaultValueSql("GetDate()");
 
             builder.Property(c => c.Name)
                 .HasMaxLength(100)
