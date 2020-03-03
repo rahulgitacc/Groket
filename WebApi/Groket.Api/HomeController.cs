@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace Groket.Api
 {
@@ -8,7 +9,8 @@ namespace Groket.Api
     {
         public IActionResult Get()
         {
-            return new JsonResult(from c in User.Claims select new { c.Type, c.Value });
+            var a = User.Identity.Name;
+            return new JsonResult(from c in User.Claims select new { c.Type, c.Value, a });
         }
     }
 }
