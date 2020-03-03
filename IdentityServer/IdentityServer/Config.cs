@@ -17,13 +17,12 @@ namespace IdentityServer
                 new IdentityResources.Profile()
             };
 
-        /// <summary>
-        /// Declaring the API resource
-        /// </summary>
+
         public static IEnumerable<ApiResource> Apis =>
             new List<ApiResource>() {
                 new ApiResource("groketApi", "Groket API")
             };
+
 
         public static IEnumerable<Client> Clients =>
             new List<Client>() { 
@@ -76,6 +75,5 @@ namespace IdentityServer
                     AllowOfflineAccess = true
                 }
             };
-        
     }
 }

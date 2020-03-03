@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace IdentityBlank
+namespace IdentityServer4.Quickstart.UI
 {
     public class GrantsViewModel
     {
