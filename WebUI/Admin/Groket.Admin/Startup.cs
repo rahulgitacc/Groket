@@ -20,6 +20,7 @@ namespace Groket.Admin
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
             JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
             services.AddAuthentication(options =>
@@ -36,7 +37,9 @@ namespace Groket.Admin
                 options.ClientId = "Groket Admin App";
                 options.ClientSecret = "secret";
                 options.ResponseType = "code";
-
+                options.SignInScheme = "Cookies";
+                options.GetClaimsFromUserInfoEndpoint = true;
+                
                 options.SaveTokens = true;
                 options.Scope.Add("groketApi");
                 options.Scope.Add("offline_access");
