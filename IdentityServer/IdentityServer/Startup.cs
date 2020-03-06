@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using IdentityServer4.Services;
 
 namespace IdentityServer
 {
@@ -58,9 +59,11 @@ namespace IdentityServer
                     options.Events.RaiseSuccessEvents = true;
                 })
                 .AddInMemoryIdentityResources(Config.Ids)
-                .AddInMemoryApiResources(Config.Apis)
-                .AddInMemoryClients(Config.Clients)
+                .AddInMemoryApiResources(Config.Apis())
+                .AddInMemoryClients(Config.Clients())
                 .AddAspNetIdentity<ApplicationUser>();
+
+            services.AddScoped<IProfileService, IdentityProfileService>();
 
             // not recommended for production - you need to store your key material somewhere secure
             builder.AddDeveloperSigningCredential();

@@ -18,62 +18,46 @@ namespace IdentityServer
             };
 
 
-        public static IEnumerable<ApiResource> Apis =>
-            new List<ApiResource>() {
-                new ApiResource("groketApi", "Groket API")
+        public static IEnumerable<ApiResource> Apis(){
+            // create api resource list
+            var apiResources = new List<ApiResource>();
+
+            // Add the groket api resources 
+            var groketApi = new ApiResource("groketApi", "Groket Api");
+            groketApi.Description = "Api resource to handle all application activity";
+            apiResources.Add(groketApi);
+
+            return apiResources;
+        }
+        
+        // clients application who want to access the api resources
+        public static IEnumerable<Client> Clients(){
+            //Create clients list like webui, console applications and so on
+            var clients = new List<Client>();
+
+            // Add the MVC admin client
+            var adminWebUi = new Client();
+            adminWebUi.ClientId = "Groket Admin App";
+            adminWebUi.ClientSecrets.Add(new Secret("secret".Sha256()));
+            adminWebUi.ClientName = "AdminUi";
+            adminWebUi.AllowedGrantTypes = GrantTypes.Code;
+            adminWebUi.RequireConsent = false;
+            adminWebUi.AllowOfflineAccess = true;
+            adminWebUi.AlwaysSendClientClaims = true;
+            adminWebUi.AlwaysIncludeUserClaimsInIdToken = true;
+            adminWebUi.RequirePkce = true;
+            adminWebUi.AllowedScopes = new List<string>
+            {
+                IdentityServerConstants.StandardScopes.OpenId,
+                IdentityServerConstants.StandardScopes.Profile,
+                "groketApi"
             };
+            adminWebUi.RedirectUris.Add("http://localhost:51810/signin-oidc");
+            adminWebUi.PostLogoutRedirectUris.Add("http://localhost:51810/signout-callback-oidc");
+            clients.Add(adminWebUi);
 
+            return clients;
 
-        public static IEnumerable<Client> Clients =>
-            new List<Client>() { 
-                // Added the console client
-                new Client
-                {
-                    ClientId = "client",
-                    // no interactive user, use the clientid/secret for authentication
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    // secret for authentication
-                    ClientSecrets = {new Secret("secret".Sha256())},
-                    // scopes that client has access to
-                    AllowedScopes = { "groketApi" }
-                },
-
-                // Add the admin web client
-                //new Client
-                //{
-                //    ClientId = "Groket Admin App",
-                //    // no interactive user, use the clientid/secret for authentication
-                //    AllowedGrantTypes = GrantTypes.ClientCredentials,
-                //    // secret for authentication
-                //    ClientSecrets = {new Secret("AppSecretId".Sha256())},
-                //    // scopes that client has access to
-                //    AllowedScopes = { "groketApi" }
-                //}
-
-                // interactive ASP.NET Core MVC client
-                new Client
-                {
-                    ClientId = "Groket Admin App",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
-
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequireConsent = false,
-                    RequirePkce = true,
-
-                    // where to redirect to after login
-                    RedirectUris = { "http://localhost:51810/signin-oidc" },
-
-                    // where to redirect to after logout
-                    PostLogoutRedirectUris = { "http://localhost:51810/signout-callback-oidc" },
-
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                        "groketApi"
-                    },
-                    AllowOfflineAccess = true
-                }
-            };
+        }
     }
 }
