@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Groket.Application.Interfaces.Admin;
+using Groket.Application.Services;
 using Groket.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,7 +35,8 @@ namespace Groket.WebApi.Groket.Api
                     Configuration.GetConnectionString("DefaultConnection"), optionsBuilder =>
                 optionsBuilder.MigrationsAssembly("Groket.Api")));
             services.AddControllers();
-
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<GroketContext>();
             // configure bearer scheme to authenticate the api 
             services.AddAuthentication("Bearer")
                 .AddJwtBearer(option => {
@@ -40,6 +44,8 @@ namespace Groket.WebApi.Groket.Api
                     option.RequireHttpsMetadata = false;
                     option.Audience = "groketApi";
                 });
+            //services.AddSingleton(typeof(IAdminServices));
+            services.AddScoped<IAdminServices, AdminServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

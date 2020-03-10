@@ -7,13 +7,16 @@ using Groket.Domain.Models.CommonModel;
 using Groket.Domain.Models.Marketing;
 using Groket.Domain.Models.ProductsModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Groket.Data
 {
     /// <summary>
     /// Application database context
     /// </summary>
-    public class GroketContext : DbContext
+    public class GroketContext : IdentityDbContext<ApplicationUser>
     {
         public GroketContext(DbContextOptions options)
                : base(options) { }
@@ -25,6 +28,8 @@ namespace Groket.Data
         /// <param name="modelBuilder">modelBuilder</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new BrandConfiguration());
             modelBuilder.ApplyConfiguration(new CatalogConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
@@ -58,5 +63,12 @@ namespace Groket.Data
         //{
         //    optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS01;Database=Groket;Trusted_Connection=True;MultipleActiveResultSets=true;");
         //}
+    }
+
+    public class ApplicationUser : IdentityUser
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime Created { get; set; }
     }
 }
